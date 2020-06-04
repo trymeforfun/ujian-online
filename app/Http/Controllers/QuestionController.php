@@ -47,30 +47,33 @@ class QuestionController extends Controller
     {
     
         if (!$request->question_name) {
-            back()->withInput();
-        }
+            return back()->withInput();
+        } 
+
         $dataQuestion = new Question();
         $dataQuestion->lesson_id = $request->lesson_id;
         $dataQuestion->question_name = $request->question_name; 
         $dataQuestion->save();
+        
         // FOR OPTION TABLE
-        // foreach (json_decode($request->input('JSONanswer')) as $row => $value) {
-        // 	$answer = [
-        // 		'question_id' => $dataQuestion,
-        // 		'option_' => $request->input('option_'.$value->row),
-        // 	];
-        // 	if ($value->row == $request->input('choosedAnswer')) {
-        // 		$answer['option_true'] = 1;
-        //     }
-        //     Option::insert($answer);
-        // }
+        foreach (json_decode($request->input('JSONanswer')) as $row => $value) {
+        	$answer = [
+        		'question_id' => $dataQuestion->id,
+        		'option_' => $request->input('option_'.$value->row),
+        	];
+        	if ($value->row == $request->input('choosedAnswer')) {
+        		$answer['option_true'] = 1;
+            }
+            Option::insert($answer);
+        }
         
 
         $assign_quest = new Assignment_question();
         $assign_quest->question_id = $dataQuestion->id;
         $assign_quest->assignment_id = $request->assignment_id;
         $assign_quest->save();
-        dd($assign_quest);
+
+        return redirect('/question/list/'.$assign_quest->assignment_id);
 
         // return redirect('/question')->with(['assignment_id' => $assign_quest->assignment_id]);
         // if ($request->input('question_name') == '') {
@@ -149,7 +152,7 @@ class QuestionController extends Controller
 
     
 
-    public function list($id)
+    public function list(Request $request, $id)
     {
         $dataAssignment = Assignment::find($id);
         

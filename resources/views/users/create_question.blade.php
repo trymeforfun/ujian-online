@@ -42,7 +42,8 @@
                     <legend>Pertanyaan <a href="#" onclick="hideShowQuest()"><i id="iconQuest" class="fas fa-chevron-down"></i></a></legend>
                     <!-- QUESTION -->
                     <div id="question_">
-                        <textarea data-toggle="tinymce" name="question_name " data-plugin-options='{ "height": 300 }'></textarea>
+                        <textarea  name="question_name" id="question_name" data-plugin-options='{ "height": 300 }'></textarea>
+                        
                         <br />
                     </div><!-- / Question_ -->
                     <!-- END QUESTION -->

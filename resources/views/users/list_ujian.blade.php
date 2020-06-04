@@ -30,7 +30,7 @@
         <td>{{$value->lesson->lesson_name.'-'.$value->assignment_type }}</td>
         <td>{{$value->assignment_kkm}}</td>
         <td>{{$value->totalQuestion}}
-        <a href="/question/list/{{$value->id}}" class="ml-2"><i class="far fa-eye"></i></a>
+        <a href="/question/list/{{$value->id}}" class="ml-2 btn btn-warning"><i class="far fa-eye"></i></a>
         </td>
         <td>{{$value->assignment_author}}</td>
         <td>{{$value->assignment_created}}</td>
