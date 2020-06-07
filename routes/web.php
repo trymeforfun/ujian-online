@@ -40,6 +40,7 @@ Route::resource('lesson', 'LessonController');
 Route::resource('kelas', 'KelasController');
 Route::resource('question', 'QuestionController');
 Route::get('question/list/{assignId}', 'Questioncontroller@list');
+Route::get('question/detail/{assignId}', 'QuestionController@detail');
 // assginment
 Route::get('/assignment', 'AssignmentController@index');
 Route::post('/changestatus', 'AssignmentController@changeStatus')->name('changestatus');

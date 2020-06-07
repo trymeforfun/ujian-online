@@ -1,4 +1,9 @@
+@extends('layouts.app_user')
+
+@section('title', 'Page User')
+@section('content')
 <!-- Page Title Area -->
+<div class="container">
 <div class="row page-title clearfix" style="margin-top:-10px">
     <div class="page-title-left">
         <h6 class="page-title-heading mr-0 mr-r-5">Rincial Soal</h6>
@@ -32,72 +37,50 @@
             <div class="widget-body">
                 <legend>Pertanyaan</legend>
                 <div class="question_">
+                    <div class="container">
                     <div class="row">
-                        @if ($dataQuestion->question_image != '')
-                        <div class="col-sm-8">
-                        @else
-                        <div class="col-sm-12">
-                        @endif
                             {{ $dataQuestion->question_name}}
                             <div class="line"></div>
-                            @if ($dataQuestion->question_sound != '')
-                                <a href="#playMusic" data-toggle="modal" class="btn btn-sm btn-outline-primary"><i class="feather feather-music"></i>&nbsp; Mainkan Suara</a>
-                                <div class="modal modal-primary fade" id="playMusic">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                <h4 class="modal-title text-inverse">Mainkan Suara</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <audio class="audio" src="<?= base_url('assets/images/assignments/'.$dataAssignment->assignment_path.'/'.$dataQuestion->question_sound) ?>" type="audio/mp3"></audio>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            <?php endif ?>
-                        </div>
-                        <?php if ($dataQuestion->question_image != ''): ?>
-                            <div class="col-sm-4">
-                                <a data-fancybox="gallery" href="<?= base_url('assets/images/assignments/'.$dataAssignment->assignment_path.'/'.$dataQuestion->question_image) ?>"><img src="<?= base_url('assets/images/assignments/'.$dataAssignment->assignment_path.'/'.$dataQuestion->question_image) ?>" class="img-thumbnail"></a>
-                            </div>
-                        <?php endif ?>
-                    </div><!-- / Row -->
+                        </div><!-- / Row -->
+                    </div>
                 </div><!-- / Question -->
                 <br />
                 <div class="bigLine"></div>
                 <legend>Jawaban</legend>
                 <div class="option_">
-                    <?php foreach ($dataQuestion->options as $row => $value): ?>
+                    @foreach ($dataQuestion->option as $row => $value)
                         <div class="row" style="margin-bottom:20px;border-bottom:1px solid #E9E9E9">
                             <div class="col-sm-1">
-                                <center><?php $i = $row; include "numberToChar.php"; ?></center>
+                                <center><?php $i = $row;  ?> @include("number_to_char")</center>
                             </div>
                             <div class="col-sm-11">
                                 <div class="row">
-                                    <?php if ($value->option_image != ''): ?>
+                                    @if ($value->option_image != '')
                                         <div class="col-sm-9">
-                                    <?php else : ?>
+                                    @else
                                         <div class="col-sm-12">
-                                    <?php endif; ?>
-                                        <?php if ($value->option_true == 1): ?>
+                                    @endif
+                                        @if ($value->option_true == 1)
                                             <div class="alert alert-success" style="padding:5px">
                                                 Jawaban Benar
                                             </div>
-                                        <?php endif ?>
-                                        <?= $value->option_ ?>
+                                        @endif
+                                        {{$value->option_}} 
                                     </div>
-                                    <?php if ($value->option_image != ''): ?>
+                                    @if ($value->option_image != '')
                                         <div class="col-sm-3">
-                                            <a data-fancybox="gallery" href="<?= base_url('assets/images/assignments/'.$dataAssignment->assignment_path.'/'.$value->option_image) ?>"><img src="<?= base_url('assets/images/assignments/'.$dataAssignment->assignment_path.'/'.$value->option_image) ?>" class="img-thumbnail"></a>
+
+                                            {{-- <a data-fancybox="gallery" href="<?= base_url('assets/images/assignments/'.$dataAssignment->assignment_path.'/'.$value->option_image) ?>"><img src="<?= base_url('assets/images/assignments/'.$dataAssignment->assignment_path.'/'.$value->option_image) ?>" class="img-thumbnail"></a> --}}
                                         </div>
-                                    <?php endif ?>
+                                    @endif
                                 </div><!-- / Row -->
                             </div>
                         </div><!-- / Row -->
-                    <?php endforeach ?>
+                    </div>
+                    @endforeach
                 </div>
             </div><!-- / BODY -->
         </div><!-- / BG -->
     </div>
 </div>
+@endsection

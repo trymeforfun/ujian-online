@@ -43,7 +43,7 @@
                                 <td> {{$value->question_name}} </td>
                                 <td> {{$value->totalAnswer}}  Jawaban</td>
                                 <td>
-                                    <a title="Lihat detail" href="= site_url('page/detail_question/'.$dataAssignment->id_assignment.'/'.$value->id_question) ?>" class="btn btn-primary btn-sm"><i class="far fa-eye"></i></a>
+                                <a title="Lihat detail" href="/question/detail/{{$value->id}}" class="btn btn-primary btn-sm"><i class="far fa-eye"></i></a>
                                     <a title="Edit soal" href="= site_url('page/update_question/'.$dataAssignment->id_assignment.'/'.$value->id_question) ?>" class="btn btn-success btn-sm"><i class="far fa-edit"></i></a>
                                     <a href="#delete= $row ?>" data-toggle="modal" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></a>
                                 </td>

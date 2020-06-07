@@ -164,4 +164,10 @@ class QuestionController extends Controller
         return view('users.list_question', compact('dataAssignment'));
     }
 
+    public function detail($id)
+    {
+        $dataQuestion = Question::find($id) ;
+        return view('users.detail_question', compact('dataQuestion'));
+    }
+
 }
