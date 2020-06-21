@@ -24,7 +24,7 @@
          </div>
          <div class="col-md-3">
             <div class="card-body rounded bg-danger border border-danger">
-            <span>{{ $total_students }}</span> <p>Siswa</p>
+            {{-- <span>{{ $total_students }}</span> <p>Siswa</p> --}}
              </div>
          </div>
          <div class="col-md-3">

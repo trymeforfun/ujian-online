@@ -8,8 +8,6 @@ class Assignment_result extends Model
 {
     protected $table = 'assignment_result';
 
-    public function assignment()
-    {
-        return $this->belongsTo('App\Model\Assignment');
-    }   
+    protected $fillable = ['assignment_id', 'student_id', 'result_true', 'result_false', 'result_score', 'result_status'];
+    
 }

@@ -8,7 +8,7 @@ class Assignment extends Model
 {
     protected $table = 'assignment';
 
-    protected $fillable = ['id_','author_','assignment_type', 'assignment_kkm', 'assignment_active', 'assignment_order','assignment_author', 'assignment_duration', 'assignmnent_path', 'assignment_hide','show_report', 'show_analytic','question_used' , 'created_at', 'updated_at'];
+    protected $fillable = ['id_','author_','assignment_type', 'assignment_kkm', 'assignment_active', 'assignment_order','assignment_author', 'assignment_duration', 'assignmnent_path', 'assignment_hide','show_report', 'show_analytic','question_used' , 'created_at', 'updated_at', 'kelas_id'];
 
     public function lesson()
     {
