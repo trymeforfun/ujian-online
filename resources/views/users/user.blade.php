@@ -45,45 +45,49 @@
                             <div class="form-group">
                                 <label for="" class="col-sm-12 control-label">Username</label>
                                 <div class="col-sm-12">
-                                    <input type="text" class="form-control" id="username" name="username"
-                                        value="" required>
+                                    <input type="text" class="form-control @error('username') is-invalid @enderror" id="username" name="username"
+                                    value="" >
+                                        @error('username')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="" class="col-sm-12 control-label">Password</label>
                                 <div class="col-sm-12">
                                     <input type="password" class="form-control" id="password" name="password"
-                                        value="" required>
+                                        value="" >
                                 </div>
                             </div>
                             
                             <div class="form-group">
                                 <label for="name" class="col-sm-12 control-label">level</label>
                                 <div class="col-sm-12">
-                                    <select name="level" id="level" class="form-control required">
+                                    <select name="level" id="level" class="form-control @error('level') is-invalid @enderror">
                                         <option value="">Pilih level</option>
                                         <option value="staff">staff</option>
                                         <option value="guru">guru</option>
                                     </select>
+                                    @error('level')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="name" class="col-sm-12 control-label">E-mail</label>
                                 <div class="col-sm-12">
-                                    <input type="email" class="form-control" id="email" name="email" value=""
-                                        required>
+                                    <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="">
+                                    @error('email')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="name" class="col-sm-12 control-label">active</label>
                                 <div class="col-sm-12">
-                                    <select name="is_active" id="is_active" class="form-control required">
-                                        <option value="">opsi aktivasi</option>
-                                        <option value='0' >0</option>
-                                        <option value='1' >1</option>
-                                    </select>
+                                    <input type="checkbox" name="assignment_active" data-id="id" data-offstyle="warning" data-onstyle="success" data-toggle="toggle" class="toggle-class" {{'is_active' == true ? 'checked' : '' }}>
                                 </div>
                             </div>
 
@@ -132,6 +136,7 @@
 <!-- AKHIR MODAL -->
 
 {{-- script --}}
+
 
 <script type="text/javascript">
 
@@ -197,8 +202,12 @@
                          }
                  ,
              error: function (data) {
-                 console.log('Error:', data);
-                 $('#btn-save').html('Save Changes');
+                console.log('Error:', data);
+                alert('Please fill the input field');
+                $('#add-edit-modal').on('hidden.bs.modal', function() {
+                    $(this).removeData('bs.modal');
+                });
+                $('#btn-save').html('Save Changes');
              }
          });
        }

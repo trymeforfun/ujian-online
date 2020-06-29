@@ -80,6 +80,13 @@ class UserController extends Controller
     
     public function store(Request $request)
     {
+        $request->validate([
+            'username' => 'required|min:3|max:25', 'alpha_num',
+            'password' => 'required|min:6',
+            'level' => 'required',
+            'email' => 'required','email:rfc,dns',
+        ]);
+
        $user =  User::updateOrCreate(['id' => $request->id],
         [
             'username' => $request->username,
