@@ -27,30 +27,32 @@ class UserController extends Controller
     public function index(Request $request)
     {
         
-        // $teacher_class = Kelas_teacher::all();
-        // $total_students = 0;
-        // if ($request->session()->get('level') == 'staff') {
-        //     $total_students = count(Student::all());
-        //     $total_result = Assignment_result::all();
-        // } else {
-        //     foreach ( $teacher_class as $row => $value) {
-        //         //  dump($value->kelas_id);
+         return abort('404');
+
+    //     $teacher_class = Kelas_teacher::all();
+    //     $total_students = 0;
+    //     if ($request->session()->get('level') == 'staff') {
+    //         $total_students = count(Student::all());
+    //         $total_result = Assignment_result::all();
+    //     } else {
+    //         foreach ( $teacher_class as $row => $value) {
+    //             //  dump($value->kelas_id);
                 
-        //         foreach ($value->kelas_id as $r => $v) {
-        //         	dump($total_students++);
-        //         }
-        //     }
-			// $total_result = [];
- 			// foreach (Assignment::find($request->session()->get('id_')) as $r_ => $v_) {
-			// 	foreach (Assignment_result::where('assignment_id', $v_->id)->get() as $__r => $__v) {
-            //         array_push($totalResult, $__v);
-            //         dd($total_result);
-			// 	}
-		// }
+    //             foreach ($value->kelas_id as $r => $v) {
+    //             	dump($total_students++);
+    //             }
+    //         }
+	// 		$total_result = [];
+ 	// 		foreach (Assignment::find($request->session()->get('id_')) as $r_ => $v_) {
+	// 			foreach (Assignment_result::where('assignment_id', $v_->id)->get() as $__r => $__v) {
+    //                 array_push($totalResult, $__v);
+    //                 dd($total_result);
+	// 			}
+    //     }
         
-
-
-           return view('users.dashboard');
+    // }
+    
+    // return view('users.dashboard');
 
     }
 

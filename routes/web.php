@@ -2,6 +2,7 @@
 
 use App\Model\User;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,3 +48,7 @@ Route::post('/changestatus', 'AssignmentController@changeStatus')->name('changes
 Route::get('/assignment/create', 'AssignmentController@create');
 Route::post('/assignment/store', 'AssignmentController@store');
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
