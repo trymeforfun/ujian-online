@@ -2,6 +2,7 @@
 
 use App\Model\User;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,26 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::middleware('auth')->group(function(){
+    
+    Route::resource('student', 'StudentController');
+    Route::resource('lesson', 'LessonController');
+    Route::resource('kelas', 'KelasController');
+    Route::resource('question', 'QuestionController');
+    Route::get('question/list/{assignId}', 'Questioncontroller@list');
+    Route::get('question/detail/{assignId}', 'QuestionController@detail');
+    // assginment
+    Route::get('/assignment', 'AssignmentController@index');
+    Route::post('/changestatus', 'AssignmentController@changeStatus')->name('changestatus');
+    Route::get('/assignment/create', 'AssignmentController@create');
+    Route::post('/assignment/store', 'AssignmentController@store');
+
+});
+
+
+
+
+
 // Admin
 Route::get('/admin_login', 'Admin\AdminLoginController@showLoginForm');
 Route::post('/login', 'Admin\AdminLoginController@login');
@@ -35,15 +56,7 @@ Route::get('user/edit/{id}', 'User\UserController@edit')->name('user/edit/{id}')
 Route::delete('user/delete/{id}', 'User\UserController@destroy')->name('user/delete/{id}');
 // user
 
-Route::resource('student', 'StudentController');
-Route::resource('lesson', 'LessonController');
-Route::resource('kelas', 'KelasController');
-Route::resource('question', 'QuestionController');
-Route::get('question/list/{assignId}', 'Questioncontroller@list');
-Route::get('question/detail/{assignId}', 'QuestionController@detail');
-// assginment
-Route::get('/assignment', 'AssignmentController@index');
-Route::post('/changestatus', 'AssignmentController@changeStatus')->name('changestatus');
-Route::get('/assignment/create', 'AssignmentController@create');
-Route::post('/assignment/store', 'AssignmentController@store');
 
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

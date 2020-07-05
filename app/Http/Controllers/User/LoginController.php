@@ -18,7 +18,7 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         
-            $validator = Validator::make($request->all(), [
+        $validator = Validator::make($request->all(), [
                 'username' => 'required',
                 'password' => 'required',
         ]);
@@ -37,7 +37,7 @@ class LoginController extends Controller
             if ($user != null || $teacher != null) {
               if ($user['is_active'] > 0 || $teacher['teacher_hide'] == 0) {
                 if (password_verify($pass, $user['password'])) {
-                   if ($user['level'] == 'staff'){
+                   if ($user['level'] == 'staff' ){
                        $data = [
                            'id_' => $user['id'],
                            'username' => $user['username'],
@@ -45,7 +45,15 @@ class LoginController extends Controller
                       ];
                       Session::put($data);
                       return redirect('/user');
-                    } 
+                    } else {
+                        $data = [
+                            'id_' => $user['id'],
+                            'username' => $user['username'],
+                            'level' => $user['level']
+                       ];
+                       Session::put($data);
+                       return redirect('/user');
+                    }
                 } elseif (password_verify($pass, $teacher['teacher_password'])) {
                     $data = [
                         'id' => $teacher['id'],
@@ -61,16 +69,15 @@ class LoginController extends Controller
                     return redirect('/_login');
                 }
               } else {
-                  $request->session()->flash('status', 'Your username is not active !!');
+                  $request->session()->flash('status', 'Your account is not active !!');
                   return redirect('/_login');
               }
             } else {
             $request->session()->flash('status', 'You have not register yet!!');
             return redirect('/_login');
         }
-    
-        
-    
     }
+
     }
+
 }

@@ -44,7 +44,7 @@
                           {{ session('status') }}
                       </div>
                   @endif
-                    <form class="user" action="{{ '/_loginPost' }}" method="POST">
+                    <form class="user" action="/_loginPost" method="POST">
                     @csrf
                     <div class="form-group">
                       <input type="username" class="form-control form-control-user @error('username') is-invalid @enderror" id="exampleInputusername" aria-describedby="usernameHelp" placeholder="Enter Username... " name="username">

@@ -44,9 +44,10 @@ class UserController extends Controller
 
     }
 
-    public function json(Request $request){
+    public function json(Request $request)
+    {
         $list_user = User::all();
-        if($request->ajax()){
+        if ($request->ajax()) {
             return datatables()->of($list_user)
                         ->addColumn('action', function($data){
                             $button = '<a href="javascript:void(0)" data-toggle="tooltip" id="edit-user"  data-id="'.$data->id.'" data-original-title="Edit" class="edit btn btn-info btn-sm"><i class="far fa-edit"></i> Edit</a>';
@@ -58,7 +59,7 @@ class UserController extends Controller
                         ->addIndexColumn()
                         ->make(true);
        
-                    }
+        }
     }
     
     
