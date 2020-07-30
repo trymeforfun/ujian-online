@@ -14,26 +14,6 @@ use Illuminate\Support\Facades\Auth;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::middleware('auth')->group(function(){
-    
-    Route::resource('student', 'StudentController');
-    Route::resource('lesson', 'LessonController');
-    Route::resource('kelas', 'KelasController');
-    Route::resource('question', 'QuestionController');
-    Route::get('question/list/{assignId}', 'Questioncontroller@list');
-    Route::get('question/detail/{assignId}', 'QuestionController@detail');
-    // assginment
-    Route::get('/assignment', 'AssignmentController@index');
-    Route::post('/changestatus', 'AssignmentController@changeStatus')->name('changestatus');
-    Route::get('/assignment/create', 'AssignmentController@create');
-    Route::post('/assignment/store', 'AssignmentController@store');
-
-});
-
-
-
-
-
 // Admin
 Route::get('/admin_login', 'Admin\AdminLoginController@showLoginForm');
 Route::post('/login', 'Admin\AdminLoginController@login');
