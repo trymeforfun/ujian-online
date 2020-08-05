@@ -35,7 +35,7 @@ class LoginController extends Controller
             $teacher = Teacher::where('teacher_username', $username)->first();
             
             if ($user != null || $teacher != null) {
-              if ($user['is_active'] > 0 || $teacher['teacher_hide'] == 0) {
+              if ( $user['is_active'] > 0 || $teacher['teacher_hide'] == 0) {
                 if (password_verify($pass, $user['password'])) {
                    if ($user['level'] == 'staff' ){
                        $data = [

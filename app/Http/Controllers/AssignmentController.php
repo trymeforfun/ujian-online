@@ -3,16 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Pagination\LengthAwarePaginator;
 use App\Model\Assignment;
 use App\Model\Assignment_class;
-use App\model\User;
 use App\Model\Lesson;
-use App\Model\Question;
 use App\Model\Kelas;
 use App\Model\Teacher;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Session;
 
 class AssignmentController extends Controller
 {
@@ -47,14 +42,15 @@ class AssignmentController extends Controller
         if ($request->session()->get('level') == 'guru') {
             $getClass = $dataTeacher->kelas;
             $getLesson = $dataTeacher->lesson;
+            
+            return view('users.create_assignment', compact('getClass', 'getLesson'));
         } else {
-            Kelas::all();
-            Lesson::all();
+            
+            $getClass = Kelas::all();
+            $getLesson = Lesson::all();
+
+            return view('users.create_assignment', compact('getClass', 'getLesson'));
         }
-        // foreach ($getClass as $value) {
-        //     echo $value;
-        // }
-        return view('users.create_assignment', compact('getClass', 'getLesson'));
     }
 
     public function store(Request $request)
