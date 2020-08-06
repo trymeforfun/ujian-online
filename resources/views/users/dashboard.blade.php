@@ -3,11 +3,12 @@
 @section('title', 'Dashboard')
 
 @section('content')
+S
 
     <div class="container">
     <h4>Selamat datang {{Session::get('username')}}</h4>
         <hr>
-    </div>
+    </>
    <div class="container">
       <div class="row text-white">
          <div class="col-md-3">
