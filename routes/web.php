@@ -1,10 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
 
 
-Auth::routes();
 // Admin
 Route::get('/admin_login', 'Admin\AdminLoginController@showLoginForm');
 Route::post('/login', 'Admin\AdminLoginController@login');
