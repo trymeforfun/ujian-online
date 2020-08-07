@@ -11,7 +11,9 @@ use Illuminate\Support\Facades\Hash;
 use App\Model\Student;
 use App\Model\User;
 use App\Model\Assignment;
+use App\Model\Assignment_result;
 use App\Model\Teacher;
+use App\Model\Kelas_teacher;
 use Illuminate\Http\Response;
 use App\Model\Kelas;
 use Illuminate\Support\Facades\Redis;
@@ -24,23 +26,33 @@ class UserController extends Controller
 
     public function index(Request $request)
     {
-        // Catch DB
-        // $result = Assignment::GetResultByAssignment();
-        $students = Student::all();
-        // $assignment_active = Assignment::select('assignment_active')->get();
-        $all_assignment = Assignment::all();
-        # End
-        $total_students = $students;
-        if ($request->session()->get('level') == 'staff') {
-            $total_students = count($students);
-            //    $total_result = [];
-        } else {
-            $total_students = count($students);
-
+        
+        
+            $teacher_class = Kelas_teacher::all();
+            $total_students = 0;
+            if ($request->session()->get('level') == 'staff') {
+                    $total_students = count(Student::all());
+                    $total_result = Assignment_result::all();
+                } else {
+                        foreach ( $teacher_class as $row => $value) {
+                                //  dump($value->kelas_id);
+                    
+                                foreach ($value->kelas_id as $r => $v) {
+                                    	dump($total_students++);
+                                    }
+                                }
+                        		$total_result = [];
+                        		foreach (Assignment::find($request->session()->get('id_')) as $r_ => $v_) {
+                            			foreach (Assignment_result::where('assignment_id', $v_->id)->get() as $__r => $__v) {
+                    array_push($totalResult, $__v);
+                    dd($total_result);
+				}
         }
-
-
-           return view('users.dashboard', compact( 'total_students'));
+    
+    }
+    
+    //  return abort('404');
+    // return view('users.dashboard');
 
     }
 
@@ -71,6 +83,13 @@ class UserController extends Controller
     
     public function store(Request $request)
     {
+        $request->validate([
+            'username' => 'required|min:3|max:25', 'alpha_num',
+            'password' => 'required|min:6',
+            'level' => 'required',
+            'email' => 'required','email:rfc,dns',
+        ]);
+
        $user =  User::updateOrCreate(['id' => $request->id],
         [
             'username' => $request->username,

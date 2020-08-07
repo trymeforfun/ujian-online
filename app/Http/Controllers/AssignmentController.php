@@ -55,6 +55,8 @@ class AssignmentController extends Controller
 
     public function store(Request $request)
     {
+        
+
         if (!$request->input()) { 
             redirect('/assignment/create'); 
         }
@@ -83,7 +85,7 @@ class AssignmentController extends Controller
                     'kelas_id' => $value
                 ]);
             }
-            return redirect("/question.$assign->id");
+            return redirect("/question".$assign->id);
     }
 
     
